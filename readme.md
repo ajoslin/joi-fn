@@ -2,7 +2,6 @@
 
 > Return a function that runs `Joi.attempt` with the given validator
 
-
 ## Install
 
 ```
@@ -14,31 +13,34 @@ $ npm install --save joi-fn
 
 ```js
 var joiFn = require('joi-fn')
+var Joi = require('joi')
 
-joiFn('input')
-//=> output
+var validate = joiFn(Joi.string(), 'custom error')
+
+// Joi will convert a number-like string to a number for us
+validate('1')
+// => 1
+
+validate('string')
+// => throws an error with "custom error" as prefix
 ```
 
 ## API
 
-#### `joiFn(input, [options])` -> `output`
+#### `joiFn(validator, [message])` -> `function(value)`
 
-##### input
+##### vaildator
 
-*Required*  
-Type: `string`
+*Required*
 
-Lorem ipsum.
+A Joi validator
 
-##### options
+##### message
 
-###### foo
+Type: `string|Constructor`
+Default: `''`
 
-Type: `boolean`  
-Default: `false`
-
-Lorem ipsum.
-
+A string to prefix Joi's error with, or a custom Error constructor to wrap errors with.
 
 ## License
 
