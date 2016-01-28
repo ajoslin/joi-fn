@@ -42,6 +42,8 @@ Default: `''`
 
 A string to prefix Joi's error with, or a custom Error constructor to wrap errors with.
 
+This is passed straight to Joi.attempt().
+
 ## License
 
 MIT © [Andrew Joslin](http://ajoslin.com)
